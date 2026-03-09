@@ -9,6 +9,8 @@ Note that this project **does not** adhere to [Semantic Versioning](https://semv
 
 ## [Unreleased]
 
+- We added `--key-patterns` option to CLI parameters to allows users to set a citation key's pattern for a specific entry type. [#14707](https://github.com/JabRef/jabref/issues/14707)
+
 ### Added
 
 - We added `jabref://` protocol handler registration so the browser extension can launch or foreground JabRef when the HTTP server is unreachable.

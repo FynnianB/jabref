@@ -96,7 +96,6 @@ public class JabRefGUI extends Application {
 
     private static RemoteListenerServerManager remoteListenerServerManager;
     private static HttpServerManager httpServerManager;
-    private static ConnectorTokenManager connectorTokenManager;
     private static LanguageServerController languageServerController;
 
     private Stage mainStage;
@@ -189,11 +188,11 @@ public class JabRefGUI extends Application {
         JabRefGUI.remoteListenerServerManager = new RemoteListenerServerManager();
         Injector.setModelOrService(RemoteListenerServerManager.class, JabRefGUI.remoteListenerServerManager);
 
-        JabRefGUI.connectorTokenManager = new ConnectorTokenManager(preferences.getRemotePreferences());
-        Injector.setModelOrService(ConnectorTokenManager.class, JabRefGUI.connectorTokenManager);
+        ConnectorTokenManager connectorTokenManager = new ConnectorTokenManager(preferences.getRemotePreferences());
+        Injector.setModelOrService(ConnectorTokenManager.class, connectorTokenManager);
 
         JabRefGUI.httpServerManager = new HttpServerManager();
-        JabRefGUI.httpServerManager.setTokenManager(JabRefGUI.connectorTokenManager);
+        JabRefGUI.httpServerManager.setTokenManager(connectorTokenManager);
         Injector.setModelOrService(HttpServerManager.class, JabRefGUI.httpServerManager);
 
         JabRefGUI.languageServerController = new LanguageServerController(preferences, journalAbbreviationRepository, entryTypesManager);
